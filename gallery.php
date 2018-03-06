@@ -30,6 +30,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- js -->
 </head>
 <body>
+<?php
+
+/////////////////////////////////////////////////////////////////////
+// This is the only portion of the code you may need to change.
+// Indicate the location of your images 
+$root = '';
+// use if specifying path from root
+//$root = $_SERVER['DOCUMENT_ROOT'];
+
+$path = 'gambar_galeri/';
+
+// End of user modified section 
+/////////////////////////////////////////////////////////////////////
+ 
+function getImagesFromDir($path) {
+    $images = array();
+    if ( $img_dir = @opendir($path) ) {
+        while ( false !== ($img_file = readdir($img_dir)) ) {
+            // checks for gif, jpg, png
+            if ( preg_match("/(\.gif|\.jpg|\.png)$/", $img_file) ) {
+                $images[] = $img_file;
+            }
+        }
+        closedir($img_dir);
+    }
+    return $images;
+}
+
+function getRandomFromArray($ar) {
+    mt_srand( (double)microtime() * 1000000 ); // php 4.2+ not needed
+    $num = array_rand($ar);
+    return $ar[$num];
+}
+
+
+// Obtain list of images from directory 
+$imgList = getImagesFromDir($root . $path);
+
+$img = getRandomFromArray($imgList);
+$img2 = getRandomFromArray($imgList);
+$img3 = getRandomFromArray($imgList);
+$img4 = getRandomFromArray($imgList);
+$img5 = getRandomFromArray($imgList);
+$img6 = getRandomFromArray($imgList);
+$img7 = getRandomFromArray($imgList);
+$img8 = getRandomFromArray($imgList);
+$img9 = getRandomFromArray($imgList);
+?>
+
+
 <!-- banner -->
 <div class="banner inner-banner-w3-agileits" id="home">
 	<div class="banner-overlay-agileinfo">
@@ -55,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav">
 							<li><a href="index.html" data-hover="Home">Home</a></li>
 							<li><a href="about.html" data-hover="About Us">About Us</a></li>
-							<li class="active"><a href="gallery.html" data-hover="Gallery">Gallery</a></li>
+							<li class="active"><a href="gallery.php" data-hover="Gallery">Gallery</a></li>
 							<li><a href="blog.html" data-hover="Blog">Blog</a></li>
 							<li><a href="formpage.html" data-hover="Mail Us">Contact Us</a></li>
 						</ul>
@@ -75,9 +125,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 w3layouts_gallery_grid">
 					<a href="images/g1.jpg" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="images/g1.jpg" alt=" " class="img-responsive">
+							<img src="<?php echo $path . $img ?>" alt="" / class="img-responsive">
 							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Scholar Vision</h3></div>
+								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
 						</div>
 					</a>
@@ -85,9 +135,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 w3layouts_gallery_grid">
 					<a href="images/g2.jpg" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="images/g2.jpg" alt=" " class="img-responsive">
+							<img src="<?php echo $path . $img2 ?>" alt="" / class="img-responsive">
 							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Scholar Vision</h3></div>
+								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
 						</div>
 					</a>
@@ -95,9 +145,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 w3layouts_gallery_grid">
 					<a href="images/g3.jpg" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="images/g3.jpg" alt=" " class="img-responsive">
+							<img src="<?php echo $path . $img3 ?>" alt="" / class="img-responsive">
 							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Scholar Vision</h3></div>
+								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
 						</div>
 					</a>
@@ -105,9 +155,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 w3layouts_gallery_grid">
 					<a href="images/g4.jpg" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="images/g4.jpg" alt=" " class="img-responsive">
+							<img src="<?php echo $path . $img4 ?>" alt="" / class="img-responsive">
 							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Scholar Vision</h3></div>
+								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
 						</div>
 					</a>
@@ -115,9 +165,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 w3layouts_gallery_grid">
 					<a href="images/g5.jpg" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="images/g5.jpg" alt=" " class="img-responsive">
+							<img src="<?php echo $path . $img5 ?>" alt="" / class="img-responsive">
 							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Scholar Vision</h3></div>
+								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
 						</div>
 					</a>
@@ -125,9 +175,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 w3layouts_gallery_grid">
 					<a href="images/g6.jpg" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="images/g6.jpg" alt=" " class="img-responsive">
+							<img src="<?php echo $path . $img6 ?>" alt="" / class="img-responsive">
 							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Scholar Vision</h3></div>
+								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
 						</div>
 					</a>
@@ -135,9 +185,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 w3layouts_gallery_grid">
 					<a href="images/g7.jpg" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="images/g7.jpg" alt=" " class="img-responsive">
+							<img src="<?php echo $path . $img7 ?>" alt="" / class="img-responsive">
 							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Scholar Vision</h3></div>
+								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
 						</div>
 					</a>
@@ -145,9 +195,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 w3layouts_gallery_grid">
 					<a href="images/g8.jpg" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="images/g8.jpg" alt=" " class="img-responsive">
+							<img src="<?php echo $path . $img8 ?>" alt="" / class="img-responsive">
 							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Scholar Vision</h3></div>
+								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
 						</div>
 					</a>
@@ -155,9 +205,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 w3layouts_gallery_grid">
 					<a href="images/g9.jpg" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="images/g9.jpg" alt=" " class="img-responsive">
+							<img src="<?php echo $path . $img9 ?>" alt="" / class="img-responsive">
 							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Scholar Vision</h3></div>
+								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
 						</div>
 					</a>
