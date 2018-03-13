@@ -1,9 +1,17 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php
+
+$link = mysqli_connect("localhost", "root", "", "db_carousel");
+if(!$link){
+	die("Koneksi error : ".mysqli_connect_errno()." - ".mysqli_connect_error());
+}
+
+$query = "SELECT * FROM gallery";
+$result = mysqli_query($link,$query);
+if(!$result){
+	die("Query error : ".mysqli_errno($link)." - ".mysqli_error($link));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -30,56 +38,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- js -->
 </head>
 <body>
-<?php
-
-/////////////////////////////////////////////////////////////////////
-// This is the only portion of the code you may need to change.
-// Indicate the location of your images 
-$root = '';
-// use if specifying path from root
-//$root = $_SERVER['DOCUMENT_ROOT'];
-
-$path = 'gambar_galeri/';
-
-// End of user modified section 
-/////////////////////////////////////////////////////////////////////
- 
-function getImagesFromDir($path) {
-    $images = array();
-    if ( $img_dir = @opendir($path) ) {
-        while ( false !== ($img_file = readdir($img_dir)) ) {
-            // checks for gif, jpg, png
-            if ( preg_match("/(\.gif|\.jpg|\.png)$/", $img_file) ) {
-                $images[] = $img_file;
-            }
-        }
-        closedir($img_dir);
-    }
-    return $images;
-}
-
-function getRandomFromArray($ar) {
-    mt_srand( (double)microtime() * 1000000 ); // php 4.2+ not needed
-    $num = array_rand($ar);
-    return $ar[$num];
-}
-
-
-// Obtain list of images from directory 
-$imgList = getImagesFromDir($root . $path);
-
-$img = getRandomFromArray($imgList);
-$img2 = getRandomFromArray($imgList);
-$img3 = getRandomFromArray($imgList);
-$img4 = getRandomFromArray($imgList);
-$img5 = getRandomFromArray($imgList);
-$img6 = getRandomFromArray($imgList);
-$img7 = getRandomFromArray($imgList);
-$img8 = getRandomFromArray($imgList);
-$img9 = getRandomFromArray($imgList);
-?>
-
-
 <!-- banner -->
 <div class="banner inner-banner-w3-agileits" id="home">
 	<div class="banner-overlay-agileinfo">
@@ -106,7 +64,7 @@ $img9 = getRandomFromArray($imgList);
 							<li><a href="index.html" data-hover="Home">Home</a></li>
 							<li><a href="about.html" data-hover="About Us">About Us</a></li>
 							<li class="active"><a href="gallery.php" data-hover="Gallery">Gallery</a></li>
-							<li><a href="blog.html" data-hover="Blog">Blog</a></li>
+							<li><a href="blog.php" data-hover="Blog">Blog</a></li>
 							<li><a href="formpage.html" data-hover="Mail Us">Contact Us</a></li>
 						</ul>
 					</nav>
@@ -116,96 +74,17 @@ $img9 = getRandomFromArray($imgList);
 		</div>
 	</div>
 </div>
-<!-- //banner -->
-<!-- gallery -->
+
 	<div class="welcome">
 		<div class="container">
 			<h3 class="tittle-agileits-w3layouts">Our <span class="green-w3">Gallery</span></h3>
+			<?php while($row=mysqli_fetch_assoc($result)) { ?>
 			<div class="w3layouts_gallery_grids">	
 				<div class="col-md-4 w3layouts_gallery_grid">
-					<a href="images/g1.jpg" class="lsb-preview" data-lsb-group="header">
+					<a href="img/<?php echo $row['gambar']?>" class="lsb-preview" data-lsb-group="header">
 						<div class="w3layouts_news_grid">
-							<img src="<?php echo $path . $img ?>" alt="" / class="img-responsive">
-							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Our Gallery</h3></div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 w3layouts_gallery_grid">
-					<a href="images/g2.jpg" class="lsb-preview" data-lsb-group="header">
-						<div class="w3layouts_news_grid">
-							<img src="<?php echo $path . $img2 ?>" alt="" / class="img-responsive">
-							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Our Gallery</h3></div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 w3layouts_gallery_grid">
-					<a href="images/g3.jpg" class="lsb-preview" data-lsb-group="header">
-						<div class="w3layouts_news_grid">
-							<img src="<?php echo $path . $img3 ?>" alt="" / class="img-responsive">
-							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Our Gallery</h3></div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 w3layouts_gallery_grid">
-					<a href="images/g4.jpg" class="lsb-preview" data-lsb-group="header">
-						<div class="w3layouts_news_grid">
-							<img src="<?php echo $path . $img4 ?>" alt="" / class="img-responsive">
-							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Our Gallery</h3></div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 w3layouts_gallery_grid">
-					<a href="images/g5.jpg" class="lsb-preview" data-lsb-group="header">
-						<div class="w3layouts_news_grid">
-							<img src="<?php echo $path . $img5 ?>" alt="" / class="img-responsive">
-							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Our Gallery</h3></div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 w3layouts_gallery_grid">
-					<a href="images/g6.jpg" class="lsb-preview" data-lsb-group="header">
-						<div class="w3layouts_news_grid">
-							<img src="<?php echo $path . $img6 ?>" alt="" / class="img-responsive">
-							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Our Gallery</h3></div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 w3layouts_gallery_grid">
-					<a href="images/g7.jpg" class="lsb-preview" data-lsb-group="header">
-						<div class="w3layouts_news_grid">
-							<img src="<?php echo $path . $img7 ?>" alt="" / class="img-responsive">
-							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Our Gallery</h3></div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 w3layouts_gallery_grid">
-					<a href="images/g8.jpg" class="lsb-preview" data-lsb-group="header">
-						<div class="w3layouts_news_grid">
-							<img src="<?php echo $path . $img8 ?>" alt="" / class="img-responsive">
-							<div class="w3layouts_news_grid_pos">
-								<div class="wthree_text"><h3>Our Gallery</h3></div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 w3layouts_gallery_grid">
-					<a href="images/g9.jpg" class="lsb-preview" data-lsb-group="header">
-						<div class="w3layouts_news_grid">
-							<img src="<?php echo $path . $img9 ?>" alt="" / class="img-responsive">
+							<img src="img/<?php echo $row['gambar'] ?>" alt="image" class="img-responsive">
+							<!-- <img src="<?php //echo $path . $img ?>" alt="" / class="img-responsive"> -->
 							<div class="w3layouts_news_grid_pos">
 								<div class="wthree_text"><h3>Our Gallery</h3></div>
 							</div>
@@ -214,6 +93,8 @@ $img9 = getRandomFromArray($imgList);
 				</div>
 				<div class="clearfix"> </div>
 			</div>
+			<?php } ?>
+			<div class="clearfix"> </div>
 		</div>
 	</div>
 <!-- //gallery -->
@@ -239,7 +120,7 @@ $img9 = getRandomFromArray($imgList);
 					<ul class="b-nav">
 						<li><a href="index.html">Home</a></li>
 						<li><a href="about.html" >About us</a></li>
-						<li><a href="blog.html">Blog</a></li>
+						<li><a href="blog.php">Blog</a></li>
 						<li><a href="formpage.html">Contact</a></li>
 					</ul>
 				</div>

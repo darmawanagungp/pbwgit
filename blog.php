@@ -1,13 +1,21 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php
+
+$link = mysqli_connect("localhost", "root", "", "db_carousel");
+if(!$link){
+	die("Koneksi error : ".mysqli_connect_errno()." - ".mysqli_connect_error());
+}
+
+$query = "SELECT * FROM berita";
+$result = mysqli_query($link,$query);
+if(!$result){
+	die("Query error : ".mysqli_errno($link)." - ".mysqli_error($link));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-<title>Teknologi Informasi ITS</title>
+<title>Teknologi Informasi ITS Surabaya</title>
 <!-- Meta-Tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -70,54 +78,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="blog">
 <div class="container">
 <h3 class="tittle-agileits-w3layouts">Our Blog</h3>
+<?php while($row=mysqli_fetch_assoc($result)) { ?>
 	<div class="col-md-4 blog-grids-w3-agile">
 		<div class="blog-info">
-			<h6>December 18</h6>
-			<h4><a href="single.html">BLOG POST TITLE 1 </a></h4>
-			<p> Nullam sed urna id massa imperdiet auctor. Nulla sit amet nulla commodo, condimentum mauris nec, tincidunt purus. Fusce ut mollis nunc.</p>
-			<a href="single.html" class="button-w3layouts hvr-rectangle-out">Learn more</a>
+			<h6><?php echo $row['tanggal']; ?></h6>
+			<h2><a href="<?php echo $row['link']; ?>"><?php echo $row['judul']; ?></a></h2>
+			<p><?php echo $row['konten']; ?></p>
+			<a href="<?php echo $row['link']; ?>" class="button-w3layouts hvr-rectangle-out">Read more</a>
 			<div class="blog-btm-w3">
 				<div class="blog-left-w3ls">
-					<img src="images/circle1.jpg" alt="image">
-					<a href="single.html">Steven</a>
+					<img src="img/<?php echo $row['gambar'] ?>" alt="image">
+					<!-- <a href="single.html">Steven</a> -->
 				</div>
-				<div class="blog-right-w3ls">
-					<i class="fa fa-comments-o" aria-hidden="true"></i><a href="single.html">1 Comment</a>
-				</div>
+				<!-- <div class="blog-right-w3ls">
+					<i class="fa fa-comments-o" aria-hidden="true"></i><a href="single.html/<?php echo $row['id'] ?>">1 Comment</a>
+				</div> -->
 				<div class="clearfix"></div>
 			</div>
 		</div>
-			<div class="blog-image-agileits-w3layouts">
-				<a href="#" data-toggle="modal" data-target="#myModal1"><img src="images/b1.jpg" alt="image"></a>
-			</div>
 	</div>
-	<div class="col-md-4 blog-w3ls-mid">
-		<div class="blog-mid-img">
-		</div>
-		<h6>Nullam sed urna id massa imperdiet auctor, Nulla sit amet nulla commodo massa imperdiet auctor.<a href="single.html">"Mandy Jackson</a></h6>
-		<div class="clearfix"></div>
-	</div>
-	<div class="col-md-4 blog-grids-w3-agile">
-		<div class="blog-info">
-			<h6>January 12</h6>
-			<h4><a href="single.html">BLOG POST TITLE 3 </a></h4>
-			<p> Nullam sed urna id massa imperdiet auctor. Nulla sit amet nulla commodo, condimentum mauris nec, tincidunt purus. Fusce ut mollis nunc.</p>
-			<a href="single.html" class="button-w3layouts hvr-rectangle-out">Learn more</a>
-			<div class="blog-btm-w3">
-				<div class="blog-left-w3ls">
-					<img src="images/circle2.jpg" alt="image">
-					<a href="single.html">Peter</a>
-				</div>
-				<div class="blog-right-w3ls">
-					<i class="fa fa-comments-o" aria-hidden="true"></i><a href="single.html">2 Comments</a>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-			<div class="blog-image-agileits-w3layouts">
-				<a href="#" data-toggle="modal" data-target="#myModal3"><img src="images/b3.jpg" alt="image"></a>
-			</div>
-	</div>
+<?php } ?>
 	<div class="clearfix"></div>
 </div>
 </div>
@@ -145,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul class="b-nav">
 						<li><a href="index.html">Home</a></li>
 						<li><a href="about.html" >About us</a></li>
-						<li><a href="blog.html">Blog</a></li>
+						<li><a href="blog.php">Blog</a></li>
 						<li><a href="formpage.html">Contact</a></li>
 					</ul>
 				</div>
